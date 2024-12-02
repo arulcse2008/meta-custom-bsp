@@ -1,0 +1,49 @@
+# ---------------------------------------------------------------------------------------------------------------------
+# main kas menu for Meta Apollon Layer
+# ---------------------------------------------------------------------------------------------------------------------
+# This material contains trade secrets or otherwise confidential information owned by Siemens AG or its affiliates
+# (collectively, "Siemens"), or its licensors. Access to and use of this information is strictly limited as set forth
+# in the Customer's applicable agreements with Siemens.
+# ---------------------------------------------------------------------------------------------------------------------
+# Unpublished work. Copyright 2024 Siemens
+# ---------------------------------------------------------------------------------------------------------------------
+
+header:
+  version: 14
+  includes:
+    - repo: industrial-siemens-common
+      file: kas/industrial-os.yml
+
+build_system: isar
+
+distro: industrial-os
+target: service-stick-image
+machine: orin-nano
+
+defaults:
+  repos:
+    branch: main
+
+repos:
+  meta-custom-bsp:
+    url: /home/bhavani/arul/orin_prod_build/meta-custom-bsp
+
+  meta-apollon:
+
+  industrial-siemens-common:
+    url: git@code.siemens.com:IndustrialLinux/Base/industrial-siemens-common.git
+
+  meta-tensorbox:
+    url: git@code.siemens.com:IndustrialLinux/IPC/meta-tensorbox.git
+
+  meta-hwe-orin:
+    url: git@code.siemens.com:IndustrialLinux/hwe/meta-hwe-orin.git
+
+env:
+  KAS_LOOP_DEV:
+  DISTRO_APT_MIRROR:
+  DISTRO_APT_FEEDS: product
+
+local_conf_header:
+  cross: |
+    ISAR_CROSS_COMPILE = "1"
